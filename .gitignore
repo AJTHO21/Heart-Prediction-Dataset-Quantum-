@@ -23,32 +23,21 @@ wheels/
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# Virtual Environment
-venv/
+# VS Code
+.vscode/
+
+# Environment
+.env
+.venv
 env/
+venv/
 ENV/
 
 # IDE
 .idea/
-.vscode/
 *.swp
 *.swo
 
-# ML specific
-*.pt
-*.pth
-runs/
-*.onnx
-*.mlmodel
-
-# Dataset (large files)
-*.jpg
-*.jpeg
-*.png
-*.mp4
-*.avi
-*.mov
-
-# Logs
-logs/
-*.log 
+# OS
+.DS_Store
+Thumbs.db 
