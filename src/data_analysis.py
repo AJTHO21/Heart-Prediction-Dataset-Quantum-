@@ -9,10 +9,13 @@ from sklearn.metrics import classification_report, confusion_matrix
 import os
 
 # Create output directory for plots
-os.makedirs('output', exist_ok=True)
+os.makedirs('../Visualizations', exist_ok=True)
 
 # Load the data with the correct file path
 df = pd.read_csv(r'C:\Users\Addison Thompson\Downloads\Heart_Predictions_Dataset\Heart Prediction Quantum Dataset.csv')
+
+# Clean column names
+df.columns = df.columns.str.strip('`')
 
 # Basic EDA
 print("\nDataset Info:")
@@ -26,10 +29,13 @@ print(df.isnull().sum())
 
 # Create correlation matrix
 plt.figure(figsize=(10, 8))
-sns.heatmap(df.corr(), annot=True, cmap='coolwarm', center=0)
+# Create a custom subtle slate grey and orange diverging palette
+colors = sns.diverging_palette(260, 30, s=30, l=65, n=200, center="light")
+sns.heatmap(df.corr(), annot=True, cmap=colors, center=0, vmin=-1, vmax=1,
+            annot_kws={'size': 10}, fmt='.2f', square=True)
 plt.title('Correlation Matrix')
 plt.tight_layout()
-plt.savefig('output/correlation_matrix.png')
+plt.savefig('../Visualizations/correlation_matrix.png')
 plt.close()
 
 # Distribution of features
@@ -42,7 +48,7 @@ for idx, feature in enumerate(features):
     axes[idx].set_title(f'{feature} Distribution')
 
 plt.tight_layout()
-plt.savefig('output/feature_distributions.png')
+plt.savefig('../Visualizations/feature_distributions.png')
 plt.close()
 
 # Box plots for each feature
@@ -51,7 +57,7 @@ df.boxplot(column=features)
 plt.title('Feature Distributions')
 plt.xticks(rotation=45)
 plt.tight_layout()
-plt.savefig('output/feature_boxplots.png')
+plt.savefig('../Visualizations/feature_boxplots.png')
 plt.close()
 
 # Prepare data for modeling
@@ -88,7 +94,7 @@ plt.figure(figsize=(10, 6))
 sns.barplot(data=feature_importance, x='Importance', y='Feature')
 plt.title('Feature Importance')
 plt.tight_layout()
-plt.savefig('output/feature_importance.png')
+plt.savefig('../Visualizations/feature_importance.png')
 plt.close()
 
-print("\nAnalysis complete! Check the 'output' directory for visualizations.") 
+print("\nAnalysis complete! Check the 'Visualizations' directory for visualizations.") 
