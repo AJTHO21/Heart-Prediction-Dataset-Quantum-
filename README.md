@@ -87,7 +87,6 @@ Our logistic regression model achieved exceptional results:
    - Most misclassifications occur in the 40-50 age group
 
 ### Feature Importance Analysis
-![Feature Importance](Visualizations/feature_importance.png)
 
 The feature importance analysis reveals:
 1. **QuantumPatternFeature**: 
